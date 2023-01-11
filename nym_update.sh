@@ -4,7 +4,7 @@ sudo apt install pkg-config build-essential libssl-dev curl jq git -y
 rustup update
 git clone https://github.com/nymtech/nym.git nym_new
 cd nym_new
-git checkout release/v1.1.4
+git checkout release/v1.1.5
 cargo build --release
 systemctl stop nym-mixnode
 cd
