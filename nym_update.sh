@@ -4,11 +4,12 @@ sudo apt install pkg-config build-essential libssl-dev curl jq git -y
 rustup update
 git clone https://github.com/nymtech/nym.git nym_new
 cd nym_new
-git checkout release/v1.1.5
+version=$(git tag | grep -e "nym-binaries" | tail -1 | cut -d "v"   -f2)
+git checkout release/v"$version"
 cargo build --release
 systemctl stop nym-mixnode
 cd
 rm -rf nym
 mv nym_new nym
-sed -i 's/'"$1"'/'"$2"'/g' /root/.nym/mixnodes/Drake/config/config.toml
+sed -i 's/'"$1"'/'"$version"'/g' /root/.nym/mixnodes/Drake/config/config.toml
 systemctl start nym-mixnode
